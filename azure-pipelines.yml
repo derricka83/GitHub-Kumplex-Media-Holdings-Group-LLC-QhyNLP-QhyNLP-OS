@@ -15,5 +15,8 @@ steps:
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
+    kubectl get secret <service-account-secret-name> -n <namespace> -o json
+    kubectl get serviceAccounts <service-account-name> -n <namespace> -o=jsonpath={.secrets[*].name}
+    kubectl config view --minify -o jsonpath={.clusters[0].cluster.server}
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
